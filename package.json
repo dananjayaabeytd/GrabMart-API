@@ -1,0 +1,21 @@
+{
+  "name": "grabmart-api",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "API",
+    "NodeJs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "NodeJs API for GrabMart",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.9.2"
+  }
+}
