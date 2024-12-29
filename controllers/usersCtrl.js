@@ -31,13 +31,14 @@ export const registerUserCtrl = asyncHandler(async (req, res) => {
     message: 'User Registered Successfully',
     data: user,
   });
+  
 });
 
 // @desc    Login user
 // @route   POST /api/v1/users/login
 // @access  Public
 export const loginUserCtrl = asyncHandler(async (req, res) => {
-    
+
   const { email, password } = req.body;
 
   //Find the user in db by email only
@@ -52,8 +53,6 @@ export const loginUserCtrl = asyncHandler(async (req, res) => {
       userFound,
     });
   } else {
-    res.json({
-      message: 'Invalid login credentials',
-    });
+    throw new Error('Invalid email or password');
   }
 });
