@@ -70,6 +70,8 @@ export const getUserProfileCtrl = asyncHandler(async (req, res) => {
     console.log(verified);
 
 //   console.log(token);
+
+    console.log("logged in user id -> " ,req.userAuthId);
   res.json({
     status: 'success',
     message: 'User profile fetched successfully',
