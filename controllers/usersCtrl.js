@@ -1,6 +1,7 @@
 import User from '../model/User.js';
 import asyncHandler from 'express-async-handler';
 import bcrypt from 'bcryptjs';
+import generateToken from '../utils/generateToken.js';
 
 // @desc    Register user
 // @route   POST /api/v1/users/register
@@ -31,14 +32,12 @@ export const registerUserCtrl = asyncHandler(async (req, res) => {
     message: 'User Registered Successfully',
     data: user,
   });
-  
 });
 
 // @desc    Login user
 // @route   POST /api/v1/users/login
 // @access  Public
 export const loginUserCtrl = asyncHandler(async (req, res) => {
-
   const { email, password } = req.body;
 
   //Find the user in db by email only
@@ -51,8 +50,23 @@ export const loginUserCtrl = asyncHandler(async (req, res) => {
       status: 'success',
       message: 'User logged in successfully',
       userFound,
+      token: generateToken(userFound?._id),
     });
   } else {
     throw new Error('Invalid email or password');
   }
+});
+
+// @desc    Get user profile
+// @route   GET /api/v1/users/profile
+// @access  Private
+export const getUserProfileCtrl = asyncHandler(async (req, res) => {
+
+  //find the user
+//   const user = await User.findById(req.userAuthId).populate('orders');
+
+  res.json({
+    status: 'success',
+    message: 'User profile fetched successfully'
+  });
 });
